@@ -16,7 +16,6 @@
       "price": 59,
       "createdAt": "2022-09-04T14:58:23.357Z"
     },
-
     {
       "id": 3,
       "description": "Desenvolvimento de sistema",
@@ -32,6 +31,30 @@
       "category": "Educação",
       "price": 1890,
       "createdAt": "2022-09-02T14:58:23.357Z"
+    },
+    {
+      "description": "Venda de App",
+      "price": 8450,
+      "category": "Venda",
+      "type": "income",
+      "createdAt": "2022-09-05T16:15:59.193Z",
+      "id": 5
+    },
+    {
+      "description": "Compra de novos Computadores",
+      "price": 12000,
+      "category": "Compras",
+      "type": "outcome",
+      "createdAt": "2022-09-05T16:19:35.754Z",
+      "id": 6
+    },
+    {
+      "description": "Sorvete de chocolate",
+      "price": 6,
+      "category": "Alimentação",
+      "type": "outcome",
+      "createdAt": "2022-09-05T16:37:43.486Z",
+      "id": 7
     }
   ]
 }
