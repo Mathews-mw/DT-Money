@@ -6,20 +6,20 @@ import { NewTransactionModal } from '../NewTransactionModal';
 import { HeaderContainer, HeaderContent, NewTransactionButton } from "./styles";
 
 export function Header() {
-    return (
-        <HeaderContainer>
-            <HeaderContent>
-                <img src={Logo} alt="" />
+  return (
+    <HeaderContainer>
+      <HeaderContent>
+        <img src={Logo} alt="" />
 
-                <Dialog.Root>
-                    <Dialog.Trigger asChild>
-                        <NewTransactionButton>Nova transação</NewTransactionButton>
-                    </Dialog.Trigger>
+        <Dialog.Root>
+          <Dialog.Trigger asChild>
+            <NewTransactionButton>Nova transação</NewTransactionButton>
+          </Dialog.Trigger>
 
-                    <NewTransactionModal />
-                </Dialog.Root>
+          <NewTransactionModal />
+        </Dialog.Root>
 
-            </HeaderContent>
-        </HeaderContainer>
-    )
+      </HeaderContent>
+    </HeaderContainer>
+  )
 }
