@@ -1,4 +1,5 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
+import { createContext } from "use-context-selector";
 import { api } from "../libs/axios";
 
 export interface Transactions {
@@ -32,35 +33,39 @@ export const TransactionsContext = createContext({} as TransactionContextType);
 export function TransactionsContextProvider({ children }: TransactionContextProviderProps) {
   const [transactions, setTransactions] = useState<Transactions[]>([]);
   
-  async function fetchTransactions(query?: string) {
-    const response = await api.get('/transactions', {
-      params: {
-        _sort: 'createdAt',
-        _order: 'desc',
-        q: query,
-      }
-    })
+  const fetchTransactions = useCallback(
+    async (query?: string) => {
+      const response = await api.get('/transactions', {
+        params: {
+          _sort: 'createdAt',
+          _order: 'desc',
+          q: query,
+        }
+      })
+  
+      setTransactions(response.data);
+    }, []
+  );
 
-    setTransactions(response.data);
-  }
+  const createTransaction = useCallback(
+    async (data: createTransactionInput) => {
+      const { description, category, price, type } = data;
 
-  async function createTransaction(data: createTransactionInput) {
-    const { description, category, price, type } = data;
-    
-    const response = await api.post('/transactions', {
-      description,
-      price,
-      category,
-      type,
-      createdAt: new Date(),
-    })
+      const response = await api.post('/transactions', {
+        description,
+        price,
+        category,
+        type,
+        createdAt: new Date(),
+      })
 
-    setTransactions(state => [response.data, ...state]);
-  }
+      setTransactions(state => [response.data, ...state]);
+    }, []
+  );
 
   useEffect(() => {
     fetchTransactions();
-  }, []);
+  }, [fetchTransactions]);
 
   return (
     <TransactionsContext.Provider value={{ transactions, fetchTransactions, createTransaction }}>
